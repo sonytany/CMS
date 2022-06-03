@@ -1,6 +1,6 @@
 package com.contract.management.system.controller;
 
-import com.contract.management.system.dto.CollateralDTO;
+import com.contract.management.system.dto.CollateralDto;
 import com.contract.management.system.service.CollateralService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -15,33 +15,27 @@ public class CollateralController
 {
     private final CollateralService collService;
 
-    @PutMapping("/collateral")
-    public CollateralDTO putCollateral(CollateralDTO dto)
-    {
-        return collService.add(dto);
-    }
+//    @PutMapping("/collateral")
+//    public CollateralDto putCollateral(CollateralDto dto)
+//    {
+//        return collService.add(dto);
+//    }
 
-    @DeleteMapping("/collateral")
-    public void deleteCollateral(int id)
-    {
-        collService.delete(id);
-    }
+//    @DeleteMapping("/collateral")
+//    public void deleteCollateral(int id)
+//    {
+//        collService.delete(id);
+//    }
 
     @GetMapping("/collateral")
-    public CollateralDTO getCollateral(int id)
+    public CollateralDto getCollateral(int id)
     {
-        return collService.getById(id);
+        return collService.findById(id);
     }
 
-    @GetMapping("/collateral/name")
-    public List<CollateralDTO> getCollateral(String name)
-    {
-        return collService.getByName(name);
-    }
-
-    @GetMapping("/collaterals")
-    public List<CollateralDTO> getCollaterals()
-    {
-        return collService.getAll();
-    }
+//    @GetMapping("/collaterals")
+//    public List<CollateralDto> getCollaterals()
+//    {
+//        return collService.getAll();
+//    }
 }

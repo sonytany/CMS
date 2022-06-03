@@ -1,8 +1,8 @@
 package com.contract.management.system.service;
 
-import com.contract.management.system.dto.CollateralDTO;
+import com.contract.management.system.dto.CollateralDto;
 import com.contract.management.system.dto.ProductDTO;
-import com.contract.management.system.entity.Collateral;
+import com.contract.management.system.entity.CollateralEntity;
 import com.contract.management.system.entity.Product;
 
 import java.util.ArrayList;
@@ -21,8 +21,6 @@ public interface ProductService
     default Product dtoToEntityByADD(ProductDTO dto)
     {
         Product entity = Product.builder()
-                .code(dto.getCode())
-                .name(dto.getName())
                 .build();
 
         return entity;
@@ -31,9 +29,6 @@ public interface ProductService
     default Product dtoToEntity(ProductDTO dto)
     {
         Product entity = Product.builder()
-                .id(dto.getId())
-                .code(dto.getCode())
-                .name(dto.getName())
                 .build();
 
         return entity;
@@ -41,17 +36,15 @@ public interface ProductService
 
     default ProductDTO entityToDto(Product entity)
     {
-        List<CollateralDTO> collDtos = new ArrayList<>();
-        List<Collateral> collEntitys = entity.getCollaterals();
+        List<CollateralDto> collDtos = new ArrayList<>();
+        List<CollateralEntity> collEntitys = entity.getCollaterals();
 
         if(collEntitys != null && !collEntitys.isEmpty())
         {
             collEntitys.forEach((collEntity) -> {
-                CollateralDTO collDto = CollateralDTO.builder()
-                        .id(collEntity.getId())
+                CollateralDto collDto = CollateralDto.builder()
                         .code(collEntity.getCode())
                         .name(collEntity.getName())
-                        .productId(collEntity.getProduct().getId())
                         .insurableMoney(collEntity.getInsurableMoney())
                         .standardMoney(collEntity.getStandardMoney())
                         .build();
@@ -60,7 +53,6 @@ public interface ProductService
         }
 
         ProductDTO dto = ProductDTO.builder()
-                .id(entity.getId())
                 .code(entity.getCode())
                 .name(entity.getName())
                 .collaterals(collDtos)

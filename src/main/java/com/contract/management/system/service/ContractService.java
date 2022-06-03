@@ -1,14 +1,14 @@
 package com.contract.management.system.service;
 
-import com.contract.management.system.dto.CollateralDTO;
+import com.contract.management.system.dto.CollateralDto;
 
 import java.util.List;
 
 public interface ContractService
 {
-    CollateralDTO add(CollateralDTO dto);
+    CollateralDto add(CollateralDto dto);
     void delete(int id);
-    CollateralDTO getById(int id);
-    List<CollateralDTO> getByName(String name);
-    List<CollateralDTO> getAll();
+    CollateralDto getById(int id);
+    List<CollateralDto> getByName(String name);
+    List<CollateralDto> getAll();
 }
