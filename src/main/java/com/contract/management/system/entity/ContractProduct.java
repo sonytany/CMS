@@ -20,25 +20,25 @@ public class ContractProduct
     @OneToOne
     private Contract contract;
     @OneToMany(mappedBy = "contractProduct")
-    private List<ContractCollateral> collaterals;
+    private List<ContractCollateral> contractCollaterals;
 
     public ContractProduct(){}
 
-    public ContractProduct(int id, String code, String name, Contract contract, List<ContractCollateral> collaterals)
+    public ContractProduct(int id, String code, String name, Contract contract, List<ContractCollateral> contractCollaterals)
     {
         this.id = id;
         this.code = code;
         this.name = name;
         this.contract = contract;
-        this.collaterals = collaterals;
+        this.contractCollaterals = contractCollaterals;
     }
 
-    public ContractProduct(String code, String name, Contract contract, List<ContractCollateral> collaterals)
+    public ContractProduct(String code, String name, Contract contract, List<ContractCollateral> contractCollaterals)
     {
         this.code = code;
         this.name = name;
         this.contract = contract;
-        this.collaterals = collaterals;
+        this.contractCollaterals = contractCollaterals;
 
     }
 }
