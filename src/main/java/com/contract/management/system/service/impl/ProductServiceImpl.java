@@ -1,7 +1,13 @@
 package com.contract.management.system.service.impl;
 
-import com.contract.management.system.dto.ProductDTO;
-import com.contract.management.system.entity.Product;
+import com.contract.management.system.dao.CollateralDao;
+import com.contract.management.system.dao.ProductDao;
+import com.contract.management.system.model.CollateralMapper;
+import com.contract.management.system.model.ProductMapper;
+import com.contract.management.system.model.dto.CollateralDto;
+import com.contract.management.system.model.dto.ProductDto;
+import com.contract.management.system.model.entity.CollateralEntity;
+import com.contract.management.system.model.entity.ProductEntity;
 import com.contract.management.system.repository.ProductRepository;
 import com.contract.management.system.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -16,51 +22,28 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService
 {
-    private final ProductRepository prodRepo;
-
+    private final ProductDao productDao;
     @Override
-    public ProductDTO add(ProductDTO dto)
+    public ProductEntity save(ProductDto productDto)
     {
-        return entityToDto(prodRepo.save(dtoToEntityByADD(dto)));
+        return productDao.save(ProductMapper.INSTANCE.toEntity(productDto));
     }
 
     @Override
-    public ProductDTO update(ProductDTO dto)
+    public void deleteById(int id)
     {
-        return entityToDto(prodRepo.save(dtoToEntity(dto)));
+        productDao.deleteById(id);
     }
 
     @Override
-    public void delete(int id)
+    public ProductEntity findById(int id)
     {
-        prodRepo.deleteById(id);
+        return productDao.findById(id);
     }
 
     @Override
-    public ProductDTO getById(int id)
+    public List<ProductEntity> findAll()
     {
-        return entityToDto(prodRepo.findById(id).orElse(null));
-    }
-
-    @Override
-    public List<ProductDTO> getByName(String name)
-    {
-        return entitysToDtos(prodRepo.findByNameLike("%"+name+"%"));
-    }
-
-    @Override
-    public List<ProductDTO> getAll()
-    {
-        return entitysToDtos((List<Product>) prodRepo.findAll());
-    }
-
-    public List<ProductDTO> entitysToDtos(List<Product> prodEntitys)
-    {
-        List<ProductDTO> prodDtos = new ArrayList<>();
-        prodEntitys.forEach((product) -> {
-            prodDtos.add(entityToDto(product));
-        });
-
-        return prodDtos;
+        return productDao.findAll();
     }
 }

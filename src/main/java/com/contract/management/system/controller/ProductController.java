@@ -1,6 +1,7 @@
 package com.contract.management.system.controller;
 
-import com.contract.management.system.dto.ProductDTO;
+import com.contract.management.system.model.ProductMapper;
+import com.contract.management.system.model.dto.ProductDto;
 import com.contract.management.system.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,38 +17,32 @@ public class ProductController
     private final ProductService prodService;
 
     @PutMapping("/product")
-    public ProductDTO putProduct(ProductDTO dto)
+    public ProductDto putProduct(@RequestBody ProductDto dto)
     {
-        return prodService.add(dto);
+        return ProductMapper.INSTANCE.toDto(prodService.save(dto));
     }
 
     @PostMapping("/product")
-    public ProductDTO postProduct(ProductDTO dto)
+    public ProductDto postProduct(@RequestBody ProductDto dto)
     {
-        return prodService.update(dto);
+        return ProductMapper.INSTANCE.toDto(prodService.save(dto));
     }
 
     @DeleteMapping("/product")
-    public void deleteProduct(int id)
+    public void deleteCollateralProduct(int id)
     {
-        prodService.delete(id);
+        prodService.deleteById(id);
     }
 
     @GetMapping("/product")
-    public ProductDTO getProduct(int id)
+    public ProductDto getProduct(int id)
     {
-        return prodService.getById(id);
-    }
-
-    @GetMapping("/product/name")
-    public List<ProductDTO> getProduct(String name)
-    {
-        return prodService.getByName(name);
+        return ProductMapper.INSTANCE.toDto(prodService.findById(id));
     }
 
     @GetMapping("/products")
-    public List<ProductDTO> getProducts()
+    public List<ProductDto> getCollateralProducts()
     {
-        return prodService.getAll();
+        return ProductMapper.INSTANCE.toDtos(prodService.findAll());
     }
 }

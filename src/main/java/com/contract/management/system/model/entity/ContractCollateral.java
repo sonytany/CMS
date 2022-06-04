@@ -1,4 +1,4 @@
-package com.contract.management.system.entity;
+package com.contract.management.system.model.entity;
 
 import lombok.Builder;
 import lombok.Data;

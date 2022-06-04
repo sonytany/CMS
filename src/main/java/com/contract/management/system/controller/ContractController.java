@@ -1,12 +1,8 @@
 package com.contract.management.system.controller;
 
-import com.contract.management.system.dto.ProductDTO;
-import com.contract.management.system.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Log4j2
 @RestController

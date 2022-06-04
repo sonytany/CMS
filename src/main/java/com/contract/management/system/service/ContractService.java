@@ -1,6 +1,6 @@
 package com.contract.management.system.service;
 
-import com.contract.management.system.dto.CollateralDto;
+import com.contract.management.system.model.dto.CollateralDto;
 
 import java.util.List;
 

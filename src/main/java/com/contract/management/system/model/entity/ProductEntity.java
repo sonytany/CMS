@@ -1,4 +1,4 @@
-package com.contract.management.system.entity;
+package com.contract.management.system.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,8 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product
+@Table(name = "product")
+public class ProductEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
