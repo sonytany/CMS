@@ -1,10 +1,13 @@
 package com.contract.management.system.controller;
 
+import com.contract.management.system.model.contract.dto.ContractAddDto;
 import com.contract.management.system.model.contract.dto.ContractDto;
 import com.contract.management.system.service.constract.ContractService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Log4j2
@@ -13,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContractController
 {
     private final ContractService contractService;
-//    @PutMapping("/product")
-//    public ProductDTO putProduct(ProductDTO dto)
-//    {
-//        return prodService.add(dto);
-//    }
+    @PutMapping("/contract")
+    public ContractDto putContract(@RequestBody ContractAddDto dto)
+    {
+        return contractService.addContract(dto);
+    }
 //
 //    @PostMapping("/product")
 //    public ProductDTO postProduct(ProductDTO dto)

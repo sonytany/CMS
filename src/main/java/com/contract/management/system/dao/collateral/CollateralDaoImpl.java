@@ -36,4 +36,10 @@ public class CollateralDaoImpl implements CollateralDao
 	{
 		return this.collateralRepository.findAll();
 	}
+
+	@Override
+	public List<CollateralEntity> findByIdIn(int[] ids)
+	{
+		return this.collateralRepository.findByIdIn(ids);
+	}
 }

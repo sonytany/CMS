@@ -1,6 +1,5 @@
 package com.contract.management.system.model.collateral.entity;
 
-import com.contract.management.system.model.contract.entity.ContractCollateralEntity;
 import com.contract.management.system.model.product.entiry.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Builder
 @Data
@@ -28,6 +26,4 @@ public class CollateralEntity
     private int standardMoney;
     @ManyToOne
     private ProductEntity product;
-    @OneToMany(mappedBy = "collateral")
-    private List<ContractCollateralEntity> contractCollateralEntities;
 }

@@ -18,7 +18,7 @@ public class ContractDto implements Serializable
     private int period;
     private int startMonth;
     private int endMonth;
-    private int totalMoney;
+    private double totalMoney;
     private String status;
     private ContractProductDto product;
 }

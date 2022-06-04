@@ -1,6 +1,5 @@
 package com.contract.management.system.model.contract.entity;
 
-import com.contract.management.system.model.product.entiry.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +19,11 @@ public class ContractProductEntity
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String code;
     private String name;
     @OneToOne
     private ContractEntity contract;
-    @ManyToOne
-    private ProductEntity product;
     @OneToMany(mappedBy = "contractProduct")
     private List<ContractCollateralEntity> contractCollaterals;
 }

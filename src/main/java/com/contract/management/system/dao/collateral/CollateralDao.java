@@ -10,4 +10,6 @@ public interface CollateralDao
 	void deleteById(int id);
 	CollateralEntity findById(int id);
 	List<CollateralEntity> findAll();
+
+	List<CollateralEntity> findByIdIn(int[] ids);
 }

@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Builder
 @Getter
 @NoArgsConstructor
@@ -15,5 +13,5 @@ public class ContractAddDto
 {
     private int period;
     private int productId;
-    private List<Integer> collateralIds;
+    private int[] collateralIds;
 }

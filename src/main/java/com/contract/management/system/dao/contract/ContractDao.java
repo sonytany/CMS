@@ -4,7 +4,7 @@ import com.contract.management.system.model.contract.entity.ContractEntity;
 
 import java.util.List;
 
-public interface ConstractDao
+public interface ContractDao
 {
     ContractEntity save(ContractEntity entity);
     void deleteById(int id);

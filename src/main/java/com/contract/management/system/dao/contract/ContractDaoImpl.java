@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ConstractDaoImpl implements ConstractDao
+public class ContractDaoImpl implements ContractDao
 {
     private final ContractRepository contractRepository;
 

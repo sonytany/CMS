@@ -18,13 +18,13 @@ public class ContractEntity
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 17)
     private String code;
     @Column(nullable = false)
     private int period;
     private int startMonth;
     private int endMonth;
-    private int totalMoney;
+    private double totalMoney;
     private String status;
     @OneToOne(mappedBy = "contract")
     private ContractProductEntity contractProduct;

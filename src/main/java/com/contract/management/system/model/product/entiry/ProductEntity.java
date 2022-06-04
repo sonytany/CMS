@@ -1,8 +1,6 @@
 package com.contract.management.system.model.product.entiry;
 
 import com.contract.management.system.model.collateral.entity.CollateralEntity;
-import com.contract.management.system.model.contract.entity.ContractCollateralEntity;
-import com.contract.management.system.model.contract.entity.ContractProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,8 +26,4 @@ public class ProductEntity
 
     @OneToMany(mappedBy = "product")
     private List<CollateralEntity> collaterals;
-    @OneToMany(mappedBy = "product")
-    private List<ContractProductEntity> contractProducts;
-    @OneToMany(mappedBy = "product")
-    private List<ContractCollateralEntity> contractCollateralEntities;
 }
