@@ -1,9 +1,9 @@
 package com.contract.management.system.controller;
 
+import com.contract.management.system.constans.ExceptionClassType;
 import com.contract.management.system.exception.BaseException;
-import com.contract.management.system.exception.Constants;
-import com.contract.management.system.model.dto.CollateralDto;
-import com.contract.management.system.service.CollateralService;
+import com.contract.management.system.model.collateral.dto.CollateralDto;
+import com.contract.management.system.service.collateral.CollateralService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -51,6 +51,6 @@ public class CollateralController
     @GetMapping("/exception")
     public void getException() throws BaseException
     {
-        throw new BaseException(Constants.ExceptionClass.COLLATERAL, HttpStatus.BAD_REQUEST, "오류 발생확인");
+        throw new BaseException(ExceptionClassType.COLLATERAL, HttpStatus.BAD_REQUEST, "오류 발생확인");
     }
 }

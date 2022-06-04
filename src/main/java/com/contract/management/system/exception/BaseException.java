@@ -1,24 +1,25 @@
 package com.contract.management.system.exception;
 
+import com.contract.management.system.constans.ExceptionClassType;
 import org.springframework.http.HttpStatus;
 
 public class BaseException extends Exception
 {
     private static final long serialVersionUID = 1234567890123456789L;
 
-    private Constants.ExceptionClass exceptionClass;
+    private ExceptionClassType exceptionClassType;
     private HttpStatus httpStatus;
 
-    public BaseException(Constants.ExceptionClass exceptionClass, HttpStatus httpStatus, String massage)
+    public BaseException(ExceptionClassType exceptionClassType, HttpStatus httpStatus, String massage)
     {
-        super(exceptionClass.toString() + massage);
-        this.exceptionClass = exceptionClass;
+        super(exceptionClassType.toString() + massage);
+        this.exceptionClassType = exceptionClassType;
         this.httpStatus = httpStatus;
     }
 
-    public Constants.ExceptionClass getExceptionClass()
+    public ExceptionClassType getExceptionClass()
     {
-        return exceptionClass;
+        return exceptionClassType;
     }
 
     public int getHttpsStatusCode()

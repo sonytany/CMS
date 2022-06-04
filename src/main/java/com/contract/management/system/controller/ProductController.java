@@ -1,8 +1,7 @@
 package com.contract.management.system.controller;
 
-import com.contract.management.system.model.ProductMapper;
-import com.contract.management.system.model.dto.ProductDto;
-import com.contract.management.system.service.ProductService;
+import com.contract.management.system.model.product.dto.ProductDto;
+import com.contract.management.system.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +18,13 @@ public class ProductController
     @PutMapping("/product")
     public ProductDto putProduct(@RequestBody ProductDto dto)
     {
-        return ProductMapper.INSTANCE.toDto(prodService.save(dto));
+        return prodService.save(dto);
     }
 
     @PostMapping("/product")
     public ProductDto postProduct(@RequestBody ProductDto dto)
     {
-        return ProductMapper.INSTANCE.toDto(prodService.save(dto));
+        return prodService.save(dto);
     }
 
     @DeleteMapping("/product")
@@ -37,12 +36,12 @@ public class ProductController
     @GetMapping("/product")
     public ProductDto getProduct(int id)
     {
-        return ProductMapper.INSTANCE.toDto(prodService.findById(id));
+        return prodService.findById(id);
     }
 
     @GetMapping("/products")
     public List<ProductDto> getCollateralProducts()
     {
-        return ProductMapper.INSTANCE.toDtos(prodService.findAll());
+        return prodService.findAll();
     }
 }
