@@ -2,20 +2,14 @@ package com.contract.management.system.controller;
 
 import com.contract.management.system.exception.BaseException;
 import com.contract.management.system.exception.Constants;
-import com.contract.management.system.model.CollateralMapper;
 import com.contract.management.system.model.dto.CollateralDto;
-import com.contract.management.system.model.entity.CollateralEntity;
 import com.contract.management.system.service.CollateralService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Log4j2
 @RestController
@@ -27,13 +21,13 @@ public class CollateralController
     @PutMapping("/collateral")
     public CollateralDto putCollateral(@RequestBody CollateralDto dto) throws BaseException
     {
-        return CollateralMapper.INSTANCE.toDto(collService.save(dto));
+        return collService.save(dto);
     }
 
     @PostMapping("/collateral")
     public CollateralDto postCollateral(@RequestBody CollateralDto dto) throws BaseException
     {
-        return CollateralMapper.INSTANCE.toDto(collService.save(dto));
+        return collService.save(dto);
     }
 
     @DeleteMapping("/collateral")
@@ -45,13 +39,13 @@ public class CollateralController
     @GetMapping("/collateral")
     public CollateralDto getCollateral(int id) throws BaseException
     {
-        return CollateralMapper.INSTANCE.toDto(collService.findById(id));
+        return collService.findById(id);
     }
 
     @GetMapping("/collaterals")
     public List<CollateralDto> getCollaterals() throws BaseException
     {
-        return CollateralMapper.INSTANCE.toDtos(collService.findAll());
+        return collService.findAll();
     }
 
     @GetMapping("/exception")
