@@ -1,16 +1,15 @@
-package com.contract.management.system.service.product;
+package com.contract.management.system.service.product.impl;
 
 import com.contract.management.system.dao.product.ProductDao;
 import com.contract.management.system.model.product.ProductMapper;
 import com.contract.management.system.model.product.dto.ProductDto;
+import com.contract.management.system.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Log4j2
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService
 {
@@ -22,13 +21,13 @@ public class ProductServiceImpl implements ProductService
     }
 
     @Override
-    public void deleteById(int id)
+    public void deleteById(long id)
     {
         productDao.deleteById(id);
     }
 
     @Override
-    public ProductDto findById(int id)
+    public ProductDto findById(long id)
     {
         return ProductMapper.INSTANCE.toDto(productDao.findById(id));
     }

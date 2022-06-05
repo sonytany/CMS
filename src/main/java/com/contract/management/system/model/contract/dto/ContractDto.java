@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ContractDto implements Serializable
 {
-    private int id;
+    private long id;
     private String code;
     private int period;
     private int startMonth;

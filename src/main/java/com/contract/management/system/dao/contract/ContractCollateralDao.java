@@ -7,7 +7,7 @@ import java.util.List;
 public interface ContractCollateralDao
 {
     ContractCollateralEntity save(ContractCollateralEntity entity);
-    void deleteById(int id);
-    ContractCollateralEntity findById(int id);
+    void deleteById(long id);
+    ContractCollateralEntity findById(long id);
     List<ContractCollateralEntity> findAll();
 }

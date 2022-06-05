@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductDao
 {
     ProductEntity save(ProductEntity entity);
-    void deleteById(int id);
-    ProductEntity findById(int id);
+    void deleteById(long id);
+    ProductEntity findById(long id);
     List<ProductEntity> findAll();
 }

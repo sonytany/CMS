@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductService
 {
     ProductDto save(ProductDto dto);
-    void deleteById(int id);
-    ProductDto findById(int id);
+    void deleteById(long id);
+    ProductDto findById(long id);
     List<ProductDto> findAll();
 }

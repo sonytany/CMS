@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ProductCollateralDto implements Serializable
 {
-    private int collateralId;
+    private long collateralId;
     private String code;
     private String name;
     private int insurableMoney;

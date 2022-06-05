@@ -1,4 +1,4 @@
-package com.contract.management.system.service.constract;
+package com.contract.management.system.service.constract.impl;
 
 import com.contract.management.system.dao.collateral.CollateralDao;
 import com.contract.management.system.dao.contract.ContractCollateralDao;
@@ -12,15 +12,15 @@ import com.contract.management.system.model.contract.dto.ContractDto;
 import com.contract.management.system.model.contract.entity.ContractCollateralEntity;
 import com.contract.management.system.model.contract.entity.ContractEntity;
 import com.contract.management.system.model.contract.entity.ContractProductEntity;
+import com.contract.management.system.service.constract.ContractService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+
 @Service
-@Log4j2
 @RequiredArgsConstructor
 public class ContractServiceImpl implements ContractService
 {
@@ -54,13 +54,13 @@ public class ContractServiceImpl implements ContractService
     }
 
     @Override
-    public void delete(int id)
+    public void delete(long id)
     {
         constractDao.deleteById(id);
     }
 
     @Override
-    public ContractDto findById(int id)
+    public ContractDto findById(long id)
     {
         return ContractMapper.INSTANCE.toDto(constractDao.findById(id));
     }

@@ -13,5 +13,5 @@ public class ContractAddDto
 {
     private int period;
     private int productId;
-    private int[] collateralIds;
+    private long[] collateralIds;
 }

@@ -5,13 +5,11 @@ import com.contract.management.system.exception.BaseException;
 import com.contract.management.system.model.collateral.dto.CollateralDto;
 import com.contract.management.system.service.collateral.CollateralService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Log4j2
 @RestController
 @RequiredArgsConstructor
 public class CollateralController

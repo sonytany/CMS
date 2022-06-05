@@ -1,6 +1,6 @@
-package com.contract.management.system.dao.contract;
+package com.contract.management.system.dao.contract.impl;
 
-import com.contract.management.system.model.contract.entity.ContractEntity;
+import com.contract.management.system.dao.contract.ContractProductDao;
 import com.contract.management.system.model.contract.entity.ContractProductEntity;
 import com.contract.management.system.repository.ContractProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +21,13 @@ public class ContractProductDaoImpl implements ContractProductDao
     }
 
     @Override
-    public void deleteById(int id)
+    public void deleteById(long id)
     {
         contractProductRepository.deleteById(id);
     }
 
     @Override
-    public ContractProductEntity findById(int id)
+    public ContractProductEntity findById(long id)
     {
         return contractProductRepository.findById(id).orElse(null);
     }

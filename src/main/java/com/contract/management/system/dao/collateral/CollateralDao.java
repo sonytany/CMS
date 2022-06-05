@@ -7,9 +7,9 @@ import java.util.List;
 public interface CollateralDao
 {
 	CollateralEntity save(CollateralEntity entity);
-	void deleteById(int id);
-	CollateralEntity findById(int id);
+	void deleteById(long id);
+	CollateralEntity findById(long id);
 	List<CollateralEntity> findAll();
 
-	List<CollateralEntity> findByIdIn(int[] ids);
+	List<CollateralEntity> findByIdIn(long[] ids);
 }

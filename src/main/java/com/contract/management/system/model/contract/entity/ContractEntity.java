@@ -17,7 +17,7 @@ public class ContractEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(nullable = false, unique = true, length = 17)
     private String code;
     @Column(nullable = false)

@@ -1,4 +1,4 @@
-package com.contract.management.system.service.collateral;
+package com.contract.management.system.service.collateral.impl;
 
 import com.contract.management.system.dao.collateral.CollateralDao;
 import com.contract.management.system.exception.BaseException;
@@ -6,14 +6,13 @@ import com.contract.management.system.model.collateral.CollateralMapper;
 import com.contract.management.system.model.collateral.dto.CollateralDto;
 import com.contract.management.system.model.collateral.entity.CollateralEntity;
 import com.contract.management.system.model.product.entiry.ProductEntity;
+import com.contract.management.system.service.collateral.CollateralService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Log4j2
 @RequiredArgsConstructor
 public class CollateralServiceImpl implements CollateralService
 {
@@ -30,13 +29,13 @@ public class CollateralServiceImpl implements CollateralService
     }
 
     @Override
-    public void deleteById(int id) throws BaseException
+    public void deleteById(long id) throws BaseException
     {
         collateralDao.deleteById(id);
     }
 
     @Override
-    public CollateralDto findById(int id) throws BaseException
+    public CollateralDto findById(long id) throws BaseException
     {
         return CollateralMapper.INSTANCE.toDto(collateralDao.findById(id));
     }

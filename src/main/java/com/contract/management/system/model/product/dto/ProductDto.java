@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductDto implements Serializable
 {
-    private int productId;
+    private long productId;
     private String code;
     private String name;
     private List<ProductCollateralDto> collaterals;

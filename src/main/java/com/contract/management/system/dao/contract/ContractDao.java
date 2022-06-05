@@ -7,7 +7,7 @@ import java.util.List;
 public interface ContractDao
 {
     ContractEntity save(ContractEntity entity);
-    void deleteById(int id);
-    ContractEntity findById(int id);
+    void deleteById(long id);
+    ContractEntity findById(long id);
     List<ContractEntity> findAll();
 }

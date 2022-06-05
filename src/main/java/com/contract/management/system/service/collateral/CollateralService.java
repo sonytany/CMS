@@ -8,7 +8,7 @@ import java.util.List;
 public interface CollateralService
 {
     CollateralDto save(CollateralDto dto) throws BaseException;
-    void deleteById(int id) throws BaseException;
-    CollateralDto findById(int id) throws BaseException;
+    void deleteById(long id) throws BaseException;
+    CollateralDto findById(long id) throws BaseException;
     List<CollateralDto> findAll() throws BaseException;
 }

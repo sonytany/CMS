@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CollateralRepository extends JpaRepository<CollateralEntity, Integer>
+public interface CollateralRepository extends JpaRepository<CollateralEntity, Long>
 {
-    List<CollateralEntity> findByIdIn(int[] ids);
+    List<CollateralEntity> findByIdIn(long[] ids);
 }
