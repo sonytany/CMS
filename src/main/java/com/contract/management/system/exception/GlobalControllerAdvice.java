@@ -1,5 +1,7 @@
 package com.contract.management.system.exception;
 
+import com.contract.management.system.constans.ExceptionClassType;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -38,9 +40,20 @@ public class GlobalControllerAdvice
     public ResponseEntity<Map<String,Object>> exceptionHandler(MethodArgumentNotValidException e)
     {
         Map<String,Object> map = new HashMap<>();
-        map.put("error type", e.toString());
+        map.put("error type", ExceptionClassType.CLIENT);
         map.put("code", HttpStatus.BAD_REQUEST.value());
-        map.put("message", "전달 인자값에 오류가 있습니다.");
+        map.put("message", e.getAllErrors().get(0).getDefaultMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map);
+    }
+
+    @ExceptionHandler(value = EmptyResultDataAccessException.class)
+    public ResponseEntity<Map<String,Object>> exceptionHandler(EmptyResultDataAccessException e)
+    {
+        Map<String,Object> map = new HashMap<>();
+        map.put("error type", ExceptionClassType.CLIENT);
+        map.put("code", HttpStatus.BAD_REQUEST.value());
+        map.put("message", "조회되지 않는 ID값을 전달하였습니다.");
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map);
     }

@@ -3,6 +3,7 @@ package com.contract.management.system.dao.collateral;
 import com.contract.management.system.model.collateral.entity.CollateralEntity;
 
 import java.util.List;
+import java.util.Set;
 
 public interface CollateralDao
 {
@@ -11,5 +12,5 @@ public interface CollateralDao
 	CollateralEntity findById(long id);
 	List<CollateralEntity> findAll();
 
-	List<CollateralEntity> findByIdIn(long[] ids);
+	List<CollateralEntity> findByIdIn(Set<Long> ids);
 }

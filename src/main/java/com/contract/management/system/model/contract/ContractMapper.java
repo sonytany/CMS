@@ -24,7 +24,17 @@ public interface ContractMapper
 {
     ContractMapper INSTANCE = Mappers.getMapper(ContractMapper.class);
 
-    List<ContractDto> toDtos(List<ContractEntity> contractEntities);
+    default ContractCollateralEntity toContractCollateralEntity(CollateralEntity collateralEntity)
+    {
+        ContractCollateralEntity.ContractCollateralEntityBuilder entityBuilder = ContractCollateralEntity.builder();
+
+        entityBuilder.code(collateralEntity.getCode())
+                .name(collateralEntity.getName())
+                .insurableMoney(collateralEntity.getInsurableMoney())
+                .standardMoney(collateralEntity.getStandardMoney());
+
+        return entityBuilder.build();
+    }
 
     default List<ContractCollateralEntity> toAddCollateralEntities(List<CollateralEntity> collateralEntities)
     {
@@ -44,7 +54,7 @@ public interface ContractMapper
         return entities;
     }
 
-    default ContractProductEntity toAddProductEntity(ProductEntity productEntity)
+    default ContractProductEntity toContractProductEntity(ProductEntity productEntity)
     {
         ContractProductEntity.ContractProductEntityBuilder entityBuilder = ContractProductEntity.builder();
 
@@ -87,6 +97,8 @@ public interface ContractMapper
                     .statusCode(contractEntity.getStatus())
                     .product(toContractProductDto(contractEntity.getContractProduct()));
         }
+        else
+            return null;
 
         return dtoBuilder.build();
     }
@@ -98,6 +110,30 @@ public interface ContractMapper
                 .name(contractProduct.getName())
                 .period(contractProduct.getPeriod())
                 .collaterals(toContractCollateralDtos(contractProduct.getContractCollaterals()));
+
+        return dtoBuilder.build();
+    }
+
+    default ContractCollateralDto toContractCollateralDto(ContractCollateralEntity contractCollateralEntity)
+    {
+        ContractCollateralDto.ContractCollateralDtoBuilder dtoBuilder = ContractCollateralDto.builder();
+
+            dtoBuilder.code(contractCollateralEntity.getCode())
+                    .name(contractCollateralEntity.getName())
+                    .insurableMoney(contractCollateralEntity.getInsurableMoney())
+                    .standardMoney(contractCollateralEntity.getStandardMoney());
+
+        return dtoBuilder.build();
+    }
+
+    default ContractCollateralDto toContractCollateralDtoByCollateralEntity(CollateralEntity collateralEntity)
+    {
+        ContractCollateralDto.ContractCollateralDtoBuilder dtoBuilder = ContractCollateralDto.builder();
+
+        dtoBuilder.code(collateralEntity.getCode())
+                .name(collateralEntity.getName())
+                .insurableMoney(collateralEntity.getInsurableMoney())
+                .standardMoney(collateralEntity.getStandardMoney());
 
         return dtoBuilder.build();
     }
@@ -118,6 +154,24 @@ public interface ContractMapper
 
                 dtos.add(dtoBuilder.build());
             }
+        }
+
+        return dtos;
+    }
+
+    default List<ContractCollateralDto> toContractCollateralDtosByCollateralEntites(List<CollateralEntity> collateralEntities)
+    {
+        ContractCollateralDto.ContractCollateralDtoBuilder dtoBuilder = ContractCollateralDto.builder();
+        List<ContractCollateralDto> dtos = new ArrayList<>();
+
+        for(CollateralEntity entity : collateralEntities)
+        {
+            dtoBuilder.code(entity.getCode())
+                    .name(entity.getName())
+                    .insurableMoney(entity.getInsurableMoney())
+                    .standardMoney(entity.getStandardMoney());
+
+            dtos.add(dtoBuilder.build());
         }
 
         return dtos;

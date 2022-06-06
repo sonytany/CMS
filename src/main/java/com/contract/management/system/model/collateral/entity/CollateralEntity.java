@@ -1,19 +1,17 @@
 package com.contract.management.system.model.collateral.entity;
 
 import com.contract.management.system.model.product.entiry.ProductEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Builder
 @Data
 @Entity
-@Table(name = "collateral")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "product")
+@Table(name = "collateral")
 public class CollateralEntity
 {
     @Id

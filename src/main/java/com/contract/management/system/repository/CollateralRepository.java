@@ -4,8 +4,9 @@ import com.contract.management.system.model.collateral.entity.CollateralEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Set;
 
 public interface CollateralRepository extends JpaRepository<CollateralEntity, Long>
 {
-    List<CollateralEntity> findByIdIn(long[] ids);
+    List<CollateralEntity> findByIdIn(Set<Long> ids);
 }

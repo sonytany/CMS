@@ -6,8 +6,6 @@ import com.contract.management.system.repository.ContractRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class ContractDaoImpl implements ContractDao
@@ -21,20 +19,14 @@ public class ContractDaoImpl implements ContractDao
     }
 
     @Override
-    public void deleteById(long id)
-    {
-        contractRepository.deleteById(id);
-    }
-
-    @Override
     public ContractEntity findById(long id)
     {
         return contractRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<ContractEntity> findAll()
+    public ContractEntity findByCode(String code)
     {
-        return contractRepository.findAll();
+        return contractRepository.findByCode(code);
     }
 }

@@ -1,10 +1,7 @@
 package com.contract.management.system.model.product.entiry;
 
 import com.contract.management.system.model.collateral.entity.CollateralEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "product")
 @Table(name = "product")
 public class ProductEntity
 {
@@ -23,7 +21,7 @@ public class ProductEntity
     @Column(nullable = false, unique = true)
     private String code;
     private String name;
-    private int period;
+    private int minPeriod;
     private int maxPeriod;
 
     @OneToMany(mappedBy = "product")

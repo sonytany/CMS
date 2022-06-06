@@ -21,7 +21,7 @@ public class ProductAddDto implements Serializable
     private String name;
     @Min(value = 1)
     @Max(value = 12)
-    private int period;
+    private int minPeriod;
     @Min(value = 1)
     @Max(value = 12)
     private int maxPeriod;

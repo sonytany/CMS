@@ -1,9 +1,6 @@
 package com.contract.management.system.model.contract.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "contractProduct")
 @Table(name = "contract_collateral")
 public class ContractCollateralEntity
 {

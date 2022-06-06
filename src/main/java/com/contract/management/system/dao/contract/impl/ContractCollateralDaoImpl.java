@@ -6,7 +6,9 @@ import com.contract.management.system.repository.ContractCollateralRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Positive;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +23,7 @@ public class ContractCollateralDaoImpl implements ContractCollateralDao
     }
 
     @Override
+    @Positive(message = "id값은 0일 수 없습니다.")
     public void deleteById(long id)
     {
         contractCollateralRepository.deleteById(id);
@@ -33,8 +36,14 @@ public class ContractCollateralDaoImpl implements ContractCollateralDao
     }
 
     @Override
-    public List<ContractCollateralEntity> findAll()
+    public List<ContractCollateralEntity> findByIdIn(Set<Long> ids)
     {
-        return contractCollateralRepository.findAll();
+        return contractCollateralRepository.findByIdIn(ids);
+    }
+
+    @Override
+    public List<ContractCollateralEntity> findByContractProductId(long contractProductId)
+    {
+        return contractCollateralRepository.findByContractProductId(contractProductId);
     }
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +40,7 @@ public class CollateralDaoImpl implements CollateralDao
 	}
 
 	@Override
-	public List<CollateralEntity> findByIdIn(long[] ids)
+	public List<CollateralEntity> findByIdIn(Set<Long> ids)
 	{
 		return this.collateralRepository.findByIdIn(ids);
 	}
