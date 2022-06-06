@@ -14,7 +14,7 @@ insert into collateral(product_id, code, name, insurable_money, standard_money)
 values (2, 'TOTAL_LOSS', '전체손실', 1570000, 40);
 
 insert into contract(code, start_date, end_date, total_money, status)
-values ('20220606190647351', '202206', '202209', 15000, 'NORMAL');
+values ('20220606190647351', '20220601', '20220901', 15000, 'NORMAL');
 insert into contract_product(contract_id, code, name, period)
 values (1, 'TRAVELER', '여행자 보험', 3);
 insert into contract_collateral(contract_product_id, code, name, insurable_money, standard_money)

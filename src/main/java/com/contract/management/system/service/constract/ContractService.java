@@ -3,6 +3,7 @@ package com.contract.management.system.service.constract;
 import com.contract.management.system.exception.BaseException;
 import com.contract.management.system.model.contract.dto.ContractAddDto;
 import com.contract.management.system.model.contract.dto.ContractDto;
+import com.contract.management.system.model.contract.dto.ContractTempDto;
 import com.contract.management.system.model.contract.dto.ContractUpdateDto;
 
 public interface ContractService
@@ -11,4 +12,5 @@ public interface ContractService
     ContractDto findByCode(String Code) throws BaseException;
     ContractDto addContract(ContractAddDto dto) throws BaseException;
     ContractDto updateContract(ContractUpdateDto dto) throws BaseException;
+    ContractTempDto findTotalPrice(ContractAddDto dto) throws BaseException;
 }

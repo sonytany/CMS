@@ -1,55 +1,61 @@
 package com.contract.management.system.controller;
 
-import com.contract.management.system.constans.ExceptionClassType;
-import com.contract.management.system.exception.BaseException;
+import com.contract.management.system.model.collateral.dto.CollateralAddDto;
 import com.contract.management.system.model.collateral.dto.CollateralDto;
 import com.contract.management.system.service.collateral.CollateralService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/v1")
 public class CollateralController
 {
     private final CollateralService collService;
-
+    @ApiOperation(value = "담보생성", notes="상품이 제공하는 담보를 생성한다.")
     @PutMapping("/collateral")
-    public CollateralDto putCollateral(@RequestBody CollateralDto dto) throws Exception
+    public ResponseEntity<CollateralDto> putCollateral(@RequestBody CollateralAddDto dto) throws Exception
     {
-        return collService.save(dto);
+        return ResponseEntity.status(HttpStatus.OK).body(collService.addCollateral(dto));
     }
 
+    @ApiOperation(value = "담보수정", notes="담보를 수정한다.")
     @PostMapping("/collateral")
-    public CollateralDto postCollateral(@RequestBody CollateralDto dto) throws Exception
+    public ResponseEntity<CollateralDto> postCollateral(@RequestBody CollateralDto dto) throws Exception
     {
-        return collService.save(dto);
+        return ResponseEntity.status(HttpStatus.OK).body(collService.updateCollateral(dto));
     }
 
-    @DeleteMapping("/collateral")
-    public void deleteCollateral(int id) throws Exception
+    @ApiOperation(value = "담보삭제", notes="담보를 삭제한다.")
+    @DeleteMapping("/collateral/{id}")
+    public void deleteCollateral(@PathVariable long id) throws Exception
     {
         collService.deleteById(id);
     }
 
-    @GetMapping("/collateral")
-    public CollateralDto getCollateral(int id) throws Exception
+    @ApiOperation(value = "담보조회 ID", notes="담보를 ID로 조회한다.")
+    @GetMapping("/collateral/{id}")
+    public ResponseEntity<CollateralDto> getCollateral(@PathVariable long id) throws Exception
     {
-        return collService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(collService.findById(id));
     }
 
+    @ApiOperation(value = "담보조회 CODE", notes="담보를 CODE로 조회한다.")
+    @GetMapping("/collateral/code/{code}")
+    public ResponseEntity<CollateralDto> getCollateral(@PathVariable String code) throws Exception
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(collService.findByCode(code));
+    }
+
+    @ApiOperation(value = "전체담보조회", notes="모든 담보를 조회한다.")
     @GetMapping("/collaterals")
-    public List<CollateralDto> getCollaterals() throws Exception
+    public ResponseEntity<List<CollateralDto>> getCollaterals() throws Exception
     {
-        return collService.findAll();
-    }
-
-    @GetMapping("/exception")
-    public void getException() throws Exception
-    {
-        throw new BaseException(ExceptionClassType.COLLATERAL, HttpStatus.BAD_REQUEST, "오류 발생확인");
-//        throw new NullPointerException();
+        return ResponseEntity.status(HttpStatus.OK).body(collService.findAll());
     }
 }

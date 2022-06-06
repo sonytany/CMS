@@ -10,10 +10,7 @@ import com.contract.management.system.dao.product.ProductDao;
 import com.contract.management.system.exception.BaseException;
 import com.contract.management.system.model.collateral.entity.CollateralEntity;
 import com.contract.management.system.model.contract.ContractMapper;
-import com.contract.management.system.model.contract.dto.ContractAddDto;
-import com.contract.management.system.model.contract.dto.ContractCollateralDto;
-import com.contract.management.system.model.contract.dto.ContractDto;
-import com.contract.management.system.model.contract.dto.ContractUpdateDto;
+import com.contract.management.system.model.contract.dto.*;
 import com.contract.management.system.model.contract.entity.ContractCollateralEntity;
 import com.contract.management.system.model.contract.entity.ContractEntity;
 import com.contract.management.system.model.contract.entity.ContractProductEntity;
@@ -165,6 +162,38 @@ public class ContractServiceImpl implements ContractService
         return ContractMapper.INSTANCE.toDto(contractDao.findById(saveContract.getId()));
     }
 
+    public ContractTempDto findTotalPrice(ContractAddDto dto) throws BaseException
+    {
+        int period = dto.getPeriod();
+        ProductEntity product = productDao.findById(dto.getProductId());
+        ContractProductEntity contractProduct = ContractMapper.INSTANCE.toContractProductEntity(product);
+        List<CollateralEntity> collaterals = collateralDao.findByIdIn(dto.getCollateralIds());
+
+        if(product == null)
+            throw new BaseException(ExceptionClassType.CONTRACT, HttpStatus.BAD_REQUEST, "상품이 존재하지 않습니다.");
+        else if(collaterals == null || collaterals.isEmpty())
+            throw new BaseException(ExceptionClassType.CONTRACT, HttpStatus.BAD_REQUEST, "담보가 존재하지 않습니다.");
+        else if(collaterals != null && collaterals.size() > 0)
+        {
+            for(CollateralEntity collContract : collaterals)
+            {
+                if(product.getId() != collContract.getProduct().getId())
+                    throw new BaseException(ExceptionClassType.CONTRACT, HttpStatus.BAD_REQUEST, "해당 상품의 담보정보가 아닙니다. ");
+            }
+        }
+
+        ContractEntity tempContract = getContractInfo(period, product.getMinPeriod(), product.getMaxPeriod(),
+                ContractMapper.INSTANCE.toAddEntity(dto),
+                ContractMapper.INSTANCE.toContractCollateralDtosByCollateralEntites(collaterals), false);
+
+        ContractTempDto.ContractTempDtoBuilder dtoBuilder = ContractTempDto.builder();
+        dtoBuilder.totalMoney(tempContract.getTotalMoney()).startDate(tempContract.getStartDate()).endDate(tempContract.getEndDate());
+
+
+        return dtoBuilder.build();
+    }
+
+
     private ContractEntity getContractInfo(int period, int minPeriod, int maxPeriod, ContractEntity contract, List<ContractCollateralDto> contractCollateralDtos, boolean isUpdate) throws BaseException
     {
         LocalDate localDate = LocalDate.now();
@@ -172,7 +201,7 @@ public class ContractServiceImpl implements ContractService
         if(isUpdate)
         {
             String date = contract.getStartDate();
-            localDate = LocalDate.of(Integer.parseInt(date.substring(0,4)),Integer.parseInt(date.substring(4,6)),1);
+            localDate = LocalDate.of(Integer.parseInt(date.substring(0,4)),Integer.parseInt(date.substring(4,6)),Integer.parseInt(date.substring(6,8)));
         }
 
         if(!(minPeriod <= period) || !(period <= maxPeriod))
@@ -180,7 +209,7 @@ public class ContractServiceImpl implements ContractService
         else
         {
             double price = 0;
-            DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyyMM");
+            DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyyMMdd");
 
             String startDate = localDate.format(pattern);
             String endDate = localDate.plusMonths(period).format(pattern);

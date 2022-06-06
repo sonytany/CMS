@@ -20,9 +20,9 @@ public class ContractEntity
     private long id;
     @Column(nullable = false, unique = true, length = 17)
     private String code;
-    @Column(length = 6)
+    @Column(length = 8)
     private String startDate;
-    @Column(length = 6)
+    @Column(length = 8)
     private String endDate;
     private double totalMoney;
     private String status;

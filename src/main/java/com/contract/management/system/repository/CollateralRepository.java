@@ -9,4 +9,5 @@ import java.util.Set;
 public interface CollateralRepository extends JpaRepository<CollateralEntity, Long>
 {
     List<CollateralEntity> findByIdIn(Set<Long> ids);
+    CollateralEntity findByCode(String code);
 }

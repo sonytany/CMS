@@ -34,6 +34,12 @@ public class CollateralDaoImpl implements CollateralDao
 	}
 
 	@Override
+	public CollateralEntity findByCode(String code)
+	{
+		return this.collateralRepository.findByCode(code);
+	}
+
+	@Override
 	public List<CollateralEntity> findAll()
 	{
 		return this.collateralRepository.findAll();

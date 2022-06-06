@@ -10,7 +10,7 @@ public interface CollateralDao
 	CollateralEntity save(CollateralEntity entity);
 	void deleteById(long id);
 	CollateralEntity findById(long id);
+	CollateralEntity findByCode(String code);
 	List<CollateralEntity> findAll();
-
 	List<CollateralEntity> findByIdIn(Set<Long> ids);
 }

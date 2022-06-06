@@ -21,23 +21,17 @@ class ContractServiceImplTest
     private ContractDao contractDao;
 
     @Test
-    void addContract()
-    {
-    }
-
-    @Test
-    void delete()
-    {
-    }
-
-    @Test
     void findById()
     {
         int id = 1;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        Date now = new Date(System.currentTimeMillis());
+        String newId = sdf.format(now);
+
         given(contractDao.findById(id)).willReturn(
                 new ContractEntity(
                         1,
-                        "202206041222",
+                        newId,
                         "202206",
                         "202206",
                         10000.0,
@@ -47,25 +41,11 @@ class ContractServiceImplTest
 
         ContractEntity contractEntity = contractDao.findById(id);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        Date now = new Date(System.currentTimeMillis());
-        String newId = sdf.format(now);
-
         assertEquals(1, contractEntity.getId());
-        assertEquals("202206041222", contractEntity.getCode());
+        assertEquals(newId, contractEntity.getCode());
         assertEquals("202206", contractEntity.getStartDate());
         assertEquals("202206", contractEntity.getEndDate());
         assertEquals(10000, contractEntity.getTotalMoney());
         assertEquals(ContractStatusType.NORMAL.name(), contractEntity.getStatus());
-    }
-
-    @Test
-    void findByCode()
-    {
-    }
-
-    @Test
-    void findAll()
-    {
     }
 }

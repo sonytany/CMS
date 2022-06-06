@@ -6,6 +6,8 @@ import com.contract.management.system.repository.ContractRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ContractDaoImpl implements ContractDao
@@ -28,5 +30,11 @@ public class ContractDaoImpl implements ContractDao
     public ContractEntity findByCode(String code)
     {
         return contractRepository.findByCode(code);
+    }
+
+    @Override
+    public List<ContractEntity> findByEndDateGreaterThan(String expireDate)
+    {
+        return contractRepository.findByEndDateGreaterThan(expireDate);
     }
 }

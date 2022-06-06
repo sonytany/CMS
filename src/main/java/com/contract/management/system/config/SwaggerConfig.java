@@ -29,7 +29,12 @@ public class SwaggerConfig
     {
         return new ApiInfoBuilder()
                 .title("Contruct Management System API with Swagger")
-                .description("보험 상품 가입")
+                .description("" +
+                        "보험 상품 가입 : 등록되어 있는 상품 및 담보를 기준으로 계약을 신청, 조회, 수정, 예상 총 보험료 계산을 진행합니다.\n" +
+                        "Contract = 계약\n" +
+                        "Product = 상품\n" +
+                        "Collateral = 담보"
+                )
                 .version("1.0.0")
                 .build();
     }

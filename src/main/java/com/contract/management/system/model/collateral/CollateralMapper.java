@@ -1,5 +1,6 @@
 package com.contract.management.system.model.collateral;
 
+import com.contract.management.system.model.collateral.dto.CollateralAddDto;
 import com.contract.management.system.model.collateral.dto.CollateralDto;
 import com.contract.management.system.model.collateral.entity.CollateralEntity;
 import com.contract.management.system.model.product.entiry.ProductEntity;
@@ -17,7 +18,10 @@ public interface CollateralMapper
 
     @Mapping(target = "product", ignore = true)
     @Mapping(target = "id", ignore = true)
-    CollateralEntity toEntity(CollateralDto collateralDto);
+    CollateralEntity toAddEntity(CollateralAddDto collateralDto);
+
+    @Mapping(target = "product", ignore = true)
+    CollateralEntity toUpdateEntity(CollateralDto collateralDto);
 
     default CollateralDto toDto(CollateralEntity collateralEntity)
     {
@@ -25,7 +29,7 @@ public interface CollateralMapper
 
         if(collateralEntity != null)
         {
-            dtoBuilder.collateralId(collateralEntity.getId())
+            dtoBuilder.id(collateralEntity.getId())
                     .code(collateralEntity.getCode())
                     .name(collateralEntity.getName())
                     .insurableMoney(collateralEntity.getInsurableMoney())
