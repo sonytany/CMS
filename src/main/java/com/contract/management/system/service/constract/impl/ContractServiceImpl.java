@@ -219,7 +219,7 @@ public class ContractServiceImpl implements ContractService
             for(ContractCollateralDto contractCollateralDto : contractCollateralDtos)
                 price = price + ((double) contractCollateralDto.getInsurableMoney() / (double) contractCollateralDto.getStandardMoney());
 
-            contract.setTotalMoney(Math.round((period * price)*100)/100.0);
+            contract.setTotalMoney(Math.floor((period * price)*100)/100.0);
         }
 
         return contract;
