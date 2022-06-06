@@ -7,7 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ExceptionClassType
 {
-    PRODUCT("Product"), COLLATERAL("Collateral");
+    CONTRACT("Contract"),
+    PRODUCT("Product"),
+    COLLATERAL("Collateral");
 
     private String exceptionClassType;
 

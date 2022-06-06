@@ -15,10 +15,10 @@ public class ContractDto implements Serializable
 {
     private long id;
     private String code;
-    private int period;
-    private int startMonth;
-    private int endMonth;
+    private String startDate;
+    private String endDate;
     private double totalMoney;
-    private String status;
+    private String statusCode;
+    private String statusValue;
     private ContractProductDto product;
 }

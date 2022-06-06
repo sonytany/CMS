@@ -23,6 +23,8 @@ public class ProductEntity
     @Column(nullable = false, unique = true)
     private String code;
     private String name;
+    private int period;
+    private int maxPeriod;
 
     @OneToMany(mappedBy = "product")
     private List<CollateralEntity> collaterals;

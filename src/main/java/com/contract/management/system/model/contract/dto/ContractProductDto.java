@@ -16,5 +16,6 @@ public class ContractProductDto implements Serializable
 {
     private String code;
     private String name;
+    private int period;
     private List<ContractCollateralDto> collaterals;
 }

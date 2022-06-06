@@ -20,10 +20,10 @@ public class ContractEntity
     private long id;
     @Column(nullable = false, unique = true, length = 17)
     private String code;
-    @Column(nullable = false)
-    private int period;
-    private int startMonth;
-    private int endMonth;
+    @Column(length = 6)
+    private String startDate;
+    @Column(length = 6)
+    private String endDate;
     private double totalMoney;
     private String status;
     @OneToOne(mappedBy = "contract")

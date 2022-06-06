@@ -38,10 +38,9 @@ class ContractServiceImplTest
                 new ContractEntity(
                         1,
                         "202206041222",
-                        12,
-                        6,
-                        5,
-                        10000,
+                        "202206",
+                        "202206",
+                        10000.0,
                         ContractStatusType.NORMAL.name(),
                         null
                 ));
@@ -54,9 +53,8 @@ class ContractServiceImplTest
 
         assertEquals(1, contractEntity.getId());
         assertEquals("202206041222", contractEntity.getCode());
-        assertEquals(12, contractEntity.getPeriod());
-        assertEquals(6, contractEntity.getStartMonth());
-        assertEquals(5, contractEntity.getEndMonth());
+        assertEquals("202206", contractEntity.getStartDate());
+        assertEquals("202206", contractEntity.getEndDate());
         assertEquals(10000, contractEntity.getTotalMoney());
         assertEquals(ContractStatusType.NORMAL.name(), contractEntity.getStatus());
     }

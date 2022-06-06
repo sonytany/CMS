@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Builder
@@ -22,6 +23,8 @@ public class ContractProductEntity
     @Column(nullable = false)
     private String code;
     private String name;
+    @Min(value = 1)
+    private int period;
     @OneToOne
     private ContractEntity contract;
     @OneToMany(mappedBy = "contractProduct")

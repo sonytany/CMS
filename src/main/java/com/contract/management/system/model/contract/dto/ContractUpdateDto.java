@@ -1,25 +1,23 @@
 package com.contract.management.system.model.contract.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContractAddDto
+public class ContractUpdateDto
 {
     @NotNull
-    private long productId;
+    private long contractId;
     @NotNull
     private int period;
     @NotNull
     @Size(min = 1)
     private long[] collateralIds;
-
+    @NotNull
+    private String statusCode;
 }

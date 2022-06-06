@@ -66,7 +66,6 @@ public interface ContractMapper
             SimpleDateFormat sdf = new SimpleDateFormat("yyyymmddHHmmssSSS");
 
             entityBuilder.code(sdf.format(new Date(System.currentTimeMillis())))
-                    .period(contractAddDto.getPeriod())
                     .status(ContractStatusType.NORMAL.name());
         }
 
@@ -81,11 +80,11 @@ public interface ContractMapper
         {
             dtoBuilder.id(contractEntity.getId())
                     .code(contractEntity.getCode())
-                    .period(contractEntity.getPeriod())
-                    .startMonth(contractEntity.getStartMonth())
-                    .endMonth(contractEntity.getEndMonth())
+                    .startDate(contractEntity.getStartDate())
+                    .endDate(contractEntity.getEndDate())
                     .totalMoney(contractEntity.getTotalMoney())
-                    .status(ContractStatusType.valueOf(contractEntity.getStatus()).getValue())
+                    .statusValue(ContractStatusType.valueOf(contractEntity.getStatus()).getValue())
+                    .statusCode(contractEntity.getStatus())
                     .product(toContractProductDto(contractEntity.getContractProduct()));
         }
 
@@ -97,6 +96,7 @@ public interface ContractMapper
         ContractProductDto.ContractProductDtoBuilder dtoBuilder = ContractProductDto.builder();
         dtoBuilder.code(contractProduct.getCode())
                 .name(contractProduct.getName())
+                .period(contractProduct.getPeriod())
                 .collaterals(toContractCollateralDtos(contractProduct.getContractCollaterals()));
 
         return dtoBuilder.build();

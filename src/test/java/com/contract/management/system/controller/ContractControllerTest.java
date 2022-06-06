@@ -36,10 +36,10 @@ class ContractControllerTest
                 new ContractDto(
                         1,
                         "202206041222",
-                        12,
-                        6,
-                        5,
-                        10000,
+                        "20220604",
+                        "20220604",
+                        10000.0,
+                        ContractStatusType.NORMAL.name(),
                         ContractStatusType.NORMAL.getValue(),
                         null
                 ));
